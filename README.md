@@ -83,5 +83,4 @@ SHAMSKAY LMS/
 ```
 
 ## Default Admin PIN
-
-`SHAMSKAY`
+A default pin was used for admin access.
