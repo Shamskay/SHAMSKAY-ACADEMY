@@ -38,8 +38,7 @@ class LMSAPP(LMSCONFIG):
             1. Register
             2. Login
             3. Forgot Password
-            4. Admin Login
-            5. Exit
+            4. Exit
                      """)
             choice = input("Enter your choice: ").strip()
             if choice == "1":
@@ -49,8 +48,6 @@ class LMSAPP(LMSCONFIG):
             elif choice == "3":
                 self._forgot_password()
             elif choice == "4":
-                self.admin_login()
-            elif choice == "5":
                 speak(f"Thanks for coming.")
                 print("Goodbye!")
                 break
@@ -79,6 +76,16 @@ class LMSAPP(LMSCONFIG):
             role = "staff"
         else:
             print("Invalid role selection.")
+            return
+
+        print("Select Gender:\n1. Male\n2. Female")
+        gender_choice = input("Enter choice: ").strip()
+        if gender_choice == "1":
+            gender = "Male"
+        elif gender_choice == "2":
+            gender = "Female"
+        else:
+            print("Invalid gender selection.")
             return
 
         user_id = input("Create a User ID (username): ").strip()
@@ -120,7 +127,7 @@ class LMSAPP(LMSCONFIG):
 
         generated_id = self._generate_id(role)
 
-        result = self.create_account(user_id, email, full_name, password, generated_id, confirm_password, role)
+        result = self.create_account(user_id, email, full_name, password, generated_id, confirm_password, role, gender)
         if result["status"]:
             if role == "student":
                 print(result["message_student"])
@@ -141,7 +148,7 @@ class LMSAPP(LMSCONFIG):
     #  LOGIN (STUDENT, STAFF, ADMIN)
     # ********************************
 
-    def Login(self):
+    def _user_login(self):
         print("\n===== LOGIN =====")
         identifier = input("Email or Username: ").strip()
         password = input("Password: ").strip()
@@ -159,6 +166,26 @@ class LMSAPP(LMSCONFIG):
         else:
             print(result["message"])
             return
+
+    def Login(self):
+        while True:
+            print("""
+            ===== LOGIN =====
+            1. Student/Staff Login
+            2. Admin Login
+            3. Back to Main Menu
+                     """)
+            choice = input("Enter your choice: ").strip()
+            
+            if choice == "1":
+                self._user_login()
+            elif choice == "2":
+                self.admin_login()
+            elif choice == "3":
+                return
+            else:
+                print("Invalid choice.")
+                continue
 
     def _forgot_password(self):
         print("\n===== FORGOT PASSWORD =====")
@@ -871,6 +898,16 @@ class LMSAPP(LMSCONFIG):
 
         user_id = input("Staff Username: ").strip()
 
+        print("Select Gender:\n1. Male\n2. Female")
+        gender_choice = input("Enter choice: ").strip()
+        if gender_choice == "1":
+            gender = "Male"
+        elif gender_choice == "2":
+            gender = "Female"
+        else:
+            print("Invalid gender selection.")
+            return
+
         print("Sending verification code to staff email...")
         sys.stdout.flush()
         otp_data = email_verification(email)
@@ -907,7 +944,7 @@ class LMSAPP(LMSCONFIG):
                 break
 
         generated_id = self._generate_id("staff")
-        result = self.create_account(user_id, email, full_name, password, generated_id, password, "staff")
+        result = self.create_account(user_id, email, full_name, password, generated_id, password, "staff", gender)
         if result["status"]:
             print(result["message"])
             print("Registration complete. Staff can now login.")
@@ -946,6 +983,16 @@ class LMSAPP(LMSCONFIG):
 
         user_id = input("Student Username: ").strip()
 
+        print("Select Gender:\n1. Male\n2. Female")
+        gender_choice = input("Enter choice: ").strip()
+        if gender_choice == "1":
+            gender = "Male"
+        elif gender_choice == "2":
+            gender = "Female"
+        else:
+            print("Invalid gender selection.")
+            return
+
         print("Sending verification code to student email...")
         sys.stdout.flush()
         otp_data = email_verification(email)
@@ -982,7 +1029,7 @@ class LMSAPP(LMSCONFIG):
                 break
 
         generated_id = self._generate_id("student")
-        result = self.create_account(user_id, email, full_name, password, generated_id, password, "student")
+        result = self.create_account(user_id, email, full_name, password, generated_id, password, "student", gender)
         if result["status"]:
             print(result["message"])
             print("Registration complete. Student can now login.")

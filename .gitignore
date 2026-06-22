@@ -4,6 +4,7 @@
 !.gitignore
 !README.md
 !LMSAPP.py
+!LMSCONFIG.py
 
 # Don't ignore directories (needed for .gitignore traversal)
 !*/
