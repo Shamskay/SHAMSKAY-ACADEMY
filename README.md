@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SHAMSKAY LMS
 
 SHAMSKAY LMS is a Learning Management System built with Python and MySQL. It supports CBT (Computer-Based Testing), class scheduling, results management, and role-based access for students, staff, and administrators.
