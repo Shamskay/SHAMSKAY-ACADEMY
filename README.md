@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SHAMSKAY LMS
 
 SHAMSKAY LMS is a Learning Management System built with Python and MySQL. It supports CBT (Computer-Based Testing), class scheduling, results management, and role-based access for students, staff, and administrators.
@@ -76,10 +75,10 @@ python LMSAPP.py
 
 ```
 SHAMSKAY LMS/
-├── LMSAPP.py          # Application entry point and UI
-├── LMSCONFIG.py       # Database config, models, and business logic
-├── schema.sql         # SQL schema (reference)
-└── README.md
+- LMSAPP.py          # Application entry point and UI
+- LMSCONFIG.py       # Database config, models, and business logic
+- schema.sql         # SQL schema (reference)
+- README.md
 ```
 
 ## Default Admin PIN
