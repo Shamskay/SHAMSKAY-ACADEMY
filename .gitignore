@@ -1,0 +1,9 @@
+# Ignore everything by default
+*
+# But not these files
+!.gitignore
+!README.md
+!LMSAPP.py
+
+# Don't ignore directories (needed for .gitignore traversal)
+!*/
